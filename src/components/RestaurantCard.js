@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client'
 import { CDN_URL } from '../utils/constants'
 
 const RestaurantCard = ({resData}) => {
-    // console.log('resturant data', resData)
+    console.log('resturant data', resData)
     // console.log('Restaurant info', resData.info)
     const {cloudinaryImageId, name, cuisines, costForTwo, avgRating} = resData?.info
   
