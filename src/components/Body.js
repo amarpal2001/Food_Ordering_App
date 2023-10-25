@@ -16,8 +16,8 @@ const Body = () => {
     );
     const json = await data.json();
         //optional chaining
-        setListOfRestaurants(json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-        setFilteredRestaurant(json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+        setListOfRestaurants(json?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+        setFilteredRestaurant(json?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
       
     console.log("json data printed", json);
     //  console.log(json.data.cards[5].card.card.gridElements.infoWithStyle.restaurants[1].info.name) 
