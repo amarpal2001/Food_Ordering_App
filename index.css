@@ -33,6 +33,8 @@
     padding: 5px;
     margin: 5px;
     border-radius: 10px 10px 10px 10px;
+    color: black;
+    text-decoration: aliceblue;
 }
 .search{
     padding: 10px;

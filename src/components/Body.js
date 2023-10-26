@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import RestaurantCard from "./RestaurantCard";
 import ShimmerUI from "./ShimmerUI";
+import { Link } from "react-router-dom";
 
 const Body = () => {
   let [listOfRestaurants, setListOfRestaurants] = useState([]);
-  const [filteredRestaurant, setFilteredRestaurant] = useState([])
+  const [filteredRestaurant, setFilteredRestaurant] = useState([]);
   const [searchText, setSearchText] = useState("");
 
   useEffect(() => {
@@ -15,12 +16,16 @@ const Body = () => {
       "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.6041097&lng=77.289585&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
     );
     const json = await data.json();
-        //optional chaining
-        setListOfRestaurants(json?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-        setFilteredRestaurant(json?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
-      
+    //optional chaining
+    setListOfRestaurants(
+      json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    );
+    setFilteredRestaurant(
+      json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    );
+
     console.log("json data printed", json);
-    //  console.log(json.data.cards[5].card.card.gridElements.infoWithStyle.restaurants[1].info.name) 
+    //  console.log(json.data.cards[5].card.card.gridElements.infoWithStyle.restaurants[1].info.name)
   };
 
   return (
@@ -41,7 +46,10 @@ const Body = () => {
               <button
                 onClick={() => {
                   const filteredRestaurantSearch = listOfRestaurants.filter(
-                    (res) => res.info.name.toLowerCase().includes(searchText.toLowerCase())
+                    (res) =>
+                      res.info.name
+                        .toLowerCase()
+                        .includes(searchText.toLowerCase())
                   );
                   setFilteredRestaurant(filteredRestaurantSearch);
                 }}
@@ -65,7 +73,12 @@ const Body = () => {
           <div className="res-container">
             {listOfRestaurants &&
               filteredRestaurant.map((restaurant) => (
-                <RestaurantCard key={restaurant.info.id} resData={restaurant} />
+                <Link
+                  key={restaurant.info.id}
+                  to={"/restaurant/" + restaurant.info.id}
+                >
+                  <RestaurantCard resData={restaurant} />
+                </Link>
               ))}
           </div>
         </div>
