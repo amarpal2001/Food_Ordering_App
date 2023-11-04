@@ -10,6 +10,7 @@ const Body = () => {
   const [filteredRestaurant, setFilteredRestaurant] = useState([]);
   const [searchText, setSearchText] = useState("");
 
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -43,11 +44,11 @@ const Body = () => {
     <>
       {listOfRestaurants.length > 0 ? (
         <div className="body">
-          <div className="filter">
-            <div>
+          <div className="flex">
+            <div className="m-5 p-4" >
               <input
                 type="text"
-                className="search-box"
+                className="border border-solid border-black h-8 text-center"
                 placeholder="search"
                 onChange={(e) => {
                   setSearchText(e.target.value);
@@ -55,6 +56,7 @@ const Body = () => {
                 value={searchText}
               />
               <button
+              className="bg-blue-300 p-1.5 mx-4 rounded-lg"
                 onClick={() => {
                   const filteredRestaurantSearch = listOfRestaurants.filter(
                     (res) =>
@@ -68,8 +70,9 @@ const Body = () => {
                 search
               </button>
             </div>
+            <div>
             <button
-              className="filter-btn"
+              className="px-4 mt-8 py-2 bg-gray-100"
               onClick={() => {
                 // Filter logic here
                 const filteredList = listOfRestaurants.filter(
@@ -80,8 +83,10 @@ const Body = () => {
             >
               Top Rated Restaurants
             </button>
+            </div>
+            
           </div>
-          <div className="res-container">
+          <div className="flex flex-wrap">
             {listOfRestaurants &&
               filteredRestaurant.map((restaurant) => (
                 <Link
